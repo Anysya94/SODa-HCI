@@ -14,7 +14,7 @@
       <p class="subtitle">Scholarly Html Technical Report </p>
     </header>
     <article id="what" typeof="schema:ScholarlyArticle" resource="#">
-      <h1><img src="images/MainLOGO.png" style="width:35px;height:35px; margin-right:15px; margin-top:10px"> <div style="padding-top:20px; padding-bottom:20px">Study on Open Data Visualization</div></h1>
+      <h1> <div style="padding-top:20px; padding-bottom:20px">Study on Open Data Visualization</div></h1>
       <section>
         <ol>
           <li property="schema:author" typeof="sa:ContributorRole">
@@ -51,218 +51,111 @@
 
       <section typeof="sa:Abstract" id="abstract">
         <h2>Abstract</h2>
-      </p>  Our challenge is to build a
-      smart application which using gestures from users can connects to lots of different devices from different brands. 
-      This means you can control your lighting, TV, wireless socket switches, blinds, thermostat and stereo within the same
-       mobile application. No more searching for remotes, 
-      no more switching applications. Easily turn on some nice music while adjusting the lights to fit the mood.
+      </p>
+          The purpose of this project is to offer a proper data visualization solution for 2 different datasets.
+          These datasets are public and available as follows :
+          <ul>
+              <li><a href="https://plants.usda.gov/dl_all.html">U.S. Department of Agriculture's Plants Database</a> - A public dataset about plants </li>
+              <li><a href="https://www.kaggle.com/zygmunt/goodbooks-10k/data">Good Books Dataset</a> - A public dataset containing information about <a href="https://www.goodreads.com/">goodreads</a> books </li>
+          </ul>
+
     </p>
       </section>
-      <section typeof="sa:MaterialsAndMethods" id="motivation">
-        <h2>Motivation</h2>
+      <section typeof="sa:MaterialsAndMethods" id="motivation"/>
+        <h1>U.S. Department of Agriculture's Plants Database</h1>
         <p>
-          In the past few years, there has been a huge interest to bring smart home technology to the fore,
-            Whether to increase a sense of security at home or save money on heating or electricity bills,This means you can control your lighting, TV, wireless socket switches, blinds, thermostat and stereo within the same mobile application. No more searching for remotes, no more switching applications. Easily turn on some nice music while adjusting the lights to fit the mood.
-            consumers are realising that these systems not only provide convenience and simplify daily life,
-            but also cost efficiencies at a time when family budgeting is critical. Almost all consumers are interested in smart
-            home technology because they want their home to be more secure, cut costs of home energy bills and have the ability to monitor activity
-            while away from home.
+            The Complete PLANTS Checklist is nearly 7 MB and includes Symbol, Synonym Symbol, Scientific Name with Authors, National Common Name, and Family.
+            Fields in this text file are delimited by commas and enclosed in double quotes.
+           <p> To process and filter the information I used <a href="https://pandas.pydata.org/">Pandas</a> which is a very nice Python data analysis library.
+            It is open-source, providing high-performance and easy to use tool which I recommend.
+            The scrypt I used to process the csv file can be found below: </p>
+            <script src="https://gist.github.com/Anysya94/42b527db2b5cd1a9b333ff504ca9bf67.js"></script> </p>
+          And a sample from the csv file :
+          <script src="https://gist.github.com/Anysya94/724bc0337c12eb06f0a73034079d131a.js"></script>
+          <p> Using this scrypt, I extracted the number of plants from each family name category. The format of the result after the processing is in json format.
+          Then the result is used to represent 3 types of charts - BAR, LINE and DOUGHNUT Charts from    <a href="https://www.chartjs.org/">Chart.js</a> library.
           </p>
-      
-        <h1>Branding</h1>
-        <figure typeof="sa:Image">
-            <img src="images/logo.png" width="950" height="700" >
+          <figure typeof="sa:Image">
+            <img src="images/plants_bar.png" width="950" height="700" >
             <figcaption style="text-align: center" >
-                Application Logo
+            </figcaption>
+          </figure>
+      <figure typeof="sa:Image">
+        <img src="images/plants_pie.png" width="950" height="700" >
+        <figcaption style="text-align: center" >
+        </figcaption>
+      </figure>
+      <figure typeof="sa:Image">
+        <img src="images/plants_line.png" width="950" height="700" >
+        <figcaption style="text-align: center" >
+        </figcaption>
+      </figure>
+
+          <h1>Good Books Dataset</h1>
+              <p>This dataset contains ratings for ten thousand popular books.
+                  Generally, there are 100 reviews for each book, although some have less - fewer - ratings. Ratings go from one to five.</p>
+          <p>I process and analyse data from books.csv which contains metadata for each book (goodreads IDs, authors, title, average rating, etc.).
+              The metadata have been extracted from goodreads XML files, available on <a href="https://www.kaggle.com/zygmunt/goodbooks-10k/data">https://www.kaggle.com/zygmunt/goodbooks-10k/data</a>.  </p>
+            <p>Then I made several statistics on the number of books published by year and the number of books written by each author over time and represent each
+            data set using Chart.js library with different kind of charts. (DONUT, PIE AND BAR)
+          </p>
+          <p>A sample of the dataset can be found below: </p>
+          <script src="https://gist.github.com/Anysya94/0613e04bcac8f0f6c56994159549b3f5.js"></script>
+
+          <p>
+            <h3>The statistics I made on the data: </h3>
+          <p><li>Find out the number of books published by year</li> </p>
+            In order to filter data and obtain the number of books I used the following python scrypt :
+          <script src="https://gist.github.com/Anysya94/1755d41fec33e2f847e54f8cac762314.js"></script>
+          Then I use the json data in representation of the following interactive charts :
+          <figure typeof="sa:Image">
+            <img src="images/nr_of_books_per_year.png" width="950" height="700" >
+            <figcaption style="text-align: center" >
             </figcaption>
           </figure>
 
-          <h1>User Flow</h1>
           <figure typeof="sa:Image">
-            <img src="images/User Flow.jpg" width="950" height="700" >
-   
+            <img src="images/plants_pie.png" width="950" height="700" >
+            <figcaption style="text-align: center" >
+            </figcaption>
           </figure>
- 
-              <h1>Interaction design patterns</h1>
-              <p>The most common design patterns we intend to use in the application are :</p>
-              <p>
-                  <ul>
-                    <li><a href="http://ui-patterns.com/patterns/notifications">Notifications</a> - when a device is turned on/off all members which are paired with that device will be notify about the change</li>
-                    <li><a href="http://ui-patterns.com/patterns/pull-to-refresh">Pull to refresh </a> - on mobile, in order to update the list of devices on the main screen, user have to pull down the screen </li>
-                    <li><a href="http://ui-patterns.com/patterns/Autocomplete">Autocomplete</a> - complete for textbox area while you search a specific device </li>
-                    <li><a href="http://ui-patterns.com/patterns/Guided-tour">Guided Tour </a> - when the first time a user logs in the web app, he/she will have a guided tour</li>
-                    <li><a href="http://ui-patterns.com/patterns/AccountRegistration">Account registration</a> - in order to use the application, the user has to register</li>
-                    <li><a href="http://ui-patterns.com/patterns/AdaptableView">Adaptable view </a> - our website will be available on different platforms(mobile/desktop/tv)</li>
-                    <li><a href="http://ui-patterns.com/patterns/ContinuousScrolling">Continous scrolling</a> - the list of available devices will continously show up while scrolling down</li>
-                    <li><a href="http://ui-patterns.com/patterns/PasswordStrengthMeter">Password Password Strength Meter </a> - security is a very important aspect which we must take into account</li>
 
-                  </ul> 
-                  Mobil - List Devices
-               <h1>Concept 1 - Mobile</h1>  
-                 <figure typeof="sa:Image">
-                    <img src="images/Main window.png" width="950" height="700" >
-                    <figcaption style="text-align: center" >
-                        Mobile - Main window
-                    </figcaption>
-                  </figure>
-                  
-               <figure typeof="sa:Image">
-                  <img src="images/Devices list.png" width="950" height="700" >
-                  <figcaption style="text-align: center" >
-                    Devices list
-                  </figcaption>
-                </figure>
-                <figure typeof="sa:Image">
-                    <img src="images/Mobile - Main innactive.png" width="950" height="700" >
-                    <figcaption style="text-align: center" >
-                        Mobile - Main screen innactive
-                    </figcaption>
-                  </figure>
-                  <figure typeof="sa:Image">
-                      <img src="images/Mobile - Main active.png" width="950" height="700" >
-                      <figcaption style="text-align: center" >
-                          Mobile - Main screen active
-                      </figcaption>
-                    </figure>
-               <figure typeof="sa:Image">
-                  <img src="images/Mobil - List Devices.png" width="950" height="700" >
-                  <figcaption style="text-align: center" >
-                      Mobile - List Devices
-                  </figcaption>
-                </figure>
-
-                    <figure typeof="sa:Image">
-                        <img src="images/StoryBoard Mobile.png" width="950" height="700" >
-                        <figcaption style="text-align: center" >
-                            Mobile - Storyboard
-                        </figcaption>
-                      </figure>
-                    <figure typeof="sa:Image">
-                        <img src="images/DashBoard - StoryBoard.png" width="950" height="700" >
-                        <figcaption style="text-align: center" >
-                            Mobile - Storyboard
-                        </figcaption>
-                      </figure>
-
-               <h1>Concept 2 - Smart Watch</h1>
-               <figure typeof="sa:Image">
-                  <img src="images/Watch - main innactive.png" width="950" height="700" >
-                  <figcaption style="text-align: center" >
-                      Watch - Main screen innactive
-                  </figcaption>
-                </figure>
-                <figure typeof="sa:Image">
-                    <img src="images/Watch - main active.png" width="950" height="700" >
-                    <figcaption style="text-align: center" >
-                        Watch - Main screen active
-                    </figcaption>
-                  </figure>
-               <figure typeof="sa:Image">
-                  <img src="images/watch - devices list.png" width="950" height="700" >
-                  <figcaption style="text-align: center" >
-                      Watch - devices list
-                  </figcaption>
-                </figure>
-
-  
-
-                    <figure typeof="sa:Image">
-                        <img src="images/StoryBoard-watch.png" width="950" height="700" >
-                        <figcaption style="text-align: center" >
-                           Watch - StoryBoard
-                        </figcaption>
-                      </figure>
-
-               <h1>Concept 3 - AI Home</h1>
-               <figure typeof="sa:Image">
-                  <img src="images/StoryBoard-AIHOME.png" width="950" height="700" >
-                  <figcaption style="text-align: center" >
-                      AI Home StoryBoard
-                  </figcaption>
-                </figure>
-          
-
-               <h1>Concept 4 - Browser</h1>
-
-               <figure typeof="sa:Image">
-                  <img src="images/Main innactive.png" width="950" height="700" >
-                  <figcaption style="text-align: center" >
-                     Desktopt main screen inactive
-                  </figcaption>
-                </figure>
-                <figure typeof="sa:Image">
-                    <img src="images/Main active.png" width="950" height="700" >
-                    <figcaption style="text-align: center" >
-                       Desktop main screen
-                    </figcaption>
-                  </figure>
-               <figure typeof="sa:Image">
-                  <img src="images/Desktop sketch.png" width="950" height="700" >
-                  <figcaption style="text-align: center" >
-                     Desktop devices List
-                  </figcaption>
-                </figure>
-     
-         
-                <figure typeof="sa:Image">
-                    <img src="images/Main.png" width="950" height="700" >
-                    <figcaption style="text-align: center" >
-                       Desktop main screen
-                    </figcaption>
-                  </figure>
-                <figure typeof="sa:Image">
-                    <img src="images/Devices List.desktop.png" width="950" height="700" >
-                    <figcaption style="text-align: center" >
-                       Desktop devices List
-                    </figcaption>
-                  </figure>
-                  <figure typeof="sa:Image">
-                      <img src="images/desktopStoryboard.png" width="950" height="700" >
-                      <figcaption style="text-align: center" >
-                         Desktop storyboard
-                      </figcaption>
-                    </figure>  
+        <figure typeof="sa:Image">
+          <img src="images/plants_line.png" width="950" height="700" >
+          <figcaption style="text-align: center" >
+          </figcaption>
+        </figure>
 
 
+        <p>  <li>Displayed the number of books written by each author over time</li> </p>
+        I used the below python scrypt to extract json data from csv file. I summarized the results at only 20 rows for visualizing purposes.
+        <script src="https://gist.github.com/Anysya94/c635e533cc6a930abd17fc1020af5313.js"></script>
+        <p> I obtained the following json data: </p>
+        <script src="https://gist.github.com/Anysya94/b94aa1947337157160bfbabe978148cd.js"></script>
+          <figure typeof="sa:Image">
+            <img src="images/bar_author.png" width="950" height="700" >
+            <figcaption style="text-align: center" >
+            </figcaption>
+          </figure>
+        
+          <figure typeof="sa:Image">
+            <img src="images/donut_author.png" width="950" height="700" >
+            <figcaption style="text-align: center" >
+            </figcaption>
+          </figure>
 
+          <figure typeof="sa:Image">
+            <img src="images/pie_author.png" width="950" height="700" >
+            <figcaption style="text-align: center" >
+            </figcaption>
+          </figure>
+          </p>
+          <p></p>
+          <p></p>
 
-                    <h2>Personas</h2>
-                    <figure typeof="sa:Image">
-                      <img src="images/Personas-jamie.png" width="950" height="700" >
-                      <figcaption style="text-align: center" >
-                        Primary persona
-                      </figcaption>
-                    </figure>
-            
-                    <figure typeof="sa:Image">
-                      <img src="images/melissa.png" width="950" height="700" >
-                      <figcaption style="text-align: center" >
-                        Secondary persona
-                      </figcaption>
-                    </figure>
-            
-                    <figure typeof="sa:Image">
-                      <img src="images/mircea.png" width="950" height="700" >
-                      <figcaption style="text-align: center" >
-                        Negative Persona
-                      </figcaption>
-                    </figure>
-            
-                    <figure typeof="sa:Image">
-                      <img src="images/ana.png" width="950" height="700" >
-                      <figcaption style="text-align: center" >
-                        Suplimental persona 
-                      </figcaption>
-                    </figure>
-           
-            <h2>Conclusion</h2>
-            
-            <h2>References</h2>
             <p>
           
          </p>
-    <footer>
 
-    </footer>
   </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+</head>
+
+<body>
+    <canvas id="canvasChart" width="400px" height="600px"></canvas>
+    <script>
+        var ctx = document.getElementById("canvasChart").getContext('2d');
+        ctx.height = 300;
+
+        var data = { "Stephen King":60,"Nora Roberts":59,"Dean Koontz":47,"Terry Pratchett":42,"Agatha Christie":39,"Meg Cabot":37,"James Patterson":36,"David Baldacci":34,"John Grisham":33,"J.D. Robb":33,"Janet Evanovich":30,"Laurell K. Hamilton":30,"Michael Connelly":29,"John Sandford":28,"Kristen Ashley":27,"Tamora Pierce":26,"Patricia Cornwell":25,"Sherrilyn Kenyon":25,"Harlan Coben":25,"Sue Grafton":24};
+        var keys = [];
+        var values = [];
+        for (var key in data) {
+            keys.push(key);
+            values.push(data[key]);
+        }
+
+        var densityData = {
+            label: 'Books',
+            data: values,
+            backgroundColor: "rgba(255,99,132,0.2)",
+            borderColor: "rgba(255,99,132,1)",
+            borderWidth: 1,
+            hoverBackgroundColor: "rgba(255,99,132,0.4)",
+            hoverBorderColor: "rgba(255,99,132,1)"
+        };
+        var canvasChart = new Chart(ctx, {
+            labels: keys,
+            type: 'doughnut',
+            data: {
+                labels: keys,
+                datasets: [densityData]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Number of books per author '
+                },
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
